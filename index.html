@@ -90,11 +90,19 @@
   .work { background: var(--bg-blue); }
 
   /* Reviews */
-  .reviews { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .review { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 30px; display: flex; flex-direction: column; }
+  .reviews { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; padding: 4px 2px 10px; }
+  .reviews::-webkit-scrollbar { display: none; }
+  .review { flex: 0 0 calc(50% - 10px); scroll-snap-align: start; background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 30px; display: flex; flex-direction: column; }
   .stars { color: var(--gold); margin-bottom: 14px; letter-spacing: 2px; }
   .stars b { color: var(--navy); margin-inline-start: 6px; letter-spacing: 0; }
   .review p { color: var(--navy); flex: 1; }
+  .slider-nav { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 28px; }
+  .slider-nav .arrow { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: var(--card); color: var(--navy); font-size: 1.4rem; cursor: pointer; transition: background .2s, color .2s; }
+  .slider-nav .arrow:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
+  [dir="rtl"] .slider-nav .arrow { transform: scaleX(-1); }
+  .dots { display: flex; gap: 8px; }
+  .dots button { width: 9px; height: 9px; border-radius: 50px; border: 0; padding: 0; background: var(--border); cursor: pointer; transition: width .3s, background .3s; }
+  .dots button.active { width: 26px; background: var(--blue); }
   .endorsed { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); }
   .endorsed small { display: block; font-size: 1rem; font-weight: 500; color: var(--navy); margin-bottom: 10px; }
   .endorsed span { display: inline-block; background: var(--bg-blue); color: var(--navy); font-size: .82rem; font-weight: 500; padding: 5px 12px; border-radius: 50px; margin: 0 0 6px 0; margin-inline-end: 6px; }
@@ -131,7 +139,7 @@
   footer { text-align: center; padding: 0 0 40px; font-size: .9rem; }
 
   @media (max-width: 860px) {
-    .reviews { grid-template-columns: 1fr; }
+    .review { flex-basis: 88%; }
     .hero { padding-top: 50px; }
     .hero h1 { font-size: 2.6rem; }
     .hero h1 u { text-decoration-thickness: 4px; text-underline-offset: 6px; }
@@ -281,6 +289,11 @@
         <div class="endorsed"><small data-i18n="endorsed">Endorsed by client</small><span>Committed to Quality</span></div>
       </div>
     </div>
+    <div class="slider-nav">
+      <button class="arrow" data-step="-1" aria-label="Previous">‹</button>
+      <div class="dots"></div>
+      <button class="arrow" data-step="1" aria-label="Next">›</button>
+    </div>
   </div>
 </section>
 
@@ -377,6 +390,38 @@
     document.querySelector('.switch .theme').textContent = dark ? '☀️' : '🌙';
     localStorage.setItem('theme', dark ? 'dark' : 'light');
   }
+
+  // Reviews slider
+  const track = document.querySelector('.reviews');
+  const cards = [...track.children];
+  const dots = document.querySelector('.dots');
+  const cardWidth = () => cards[0].offsetWidth + 20;
+  const current = () => Math.round(Math.abs(track.scrollLeft) / cardWidth());
+  const lastIndex = () => cards.length - Math.round(track.clientWidth / cardWidth());
+  function goTo(i) {
+    if (i > lastIndex()) i = 0;
+    if (i < 0) i = lastIndex();
+    const sign = document.documentElement.dir === 'rtl' ? -1 : 1;
+    track.scrollTo({ left: sign * i * cardWidth() });
+  }
+  cards.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.setAttribute('aria-label', 'Review ' + (i + 1));
+    d.onclick = () => goTo(i);
+    dots.appendChild(d);
+  });
+  function updateDots() {
+    [...dots.children].forEach((d, i) => {
+      d.style.display = i > lastIndex() ? 'none' : '';
+      d.classList.toggle('active', i === Math.min(current(), lastIndex()));
+    });
+  }
+  track.addEventListener('scroll', updateDots);
+  window.addEventListener('resize', updateDots);
+  document.querySelectorAll('.slider-nav .arrow').forEach(b => b.onclick = () => goTo(current() + +b.dataset.step));
+  let autoplay = setInterval(() => goTo(current() + 1), 5000);
+  ['pointerdown', 'mouseenter'].forEach(e => track.parentElement.addEventListener(e, () => clearInterval(autoplay), { once: true }));
+  updateDots();
 
   setLang(localStorage.getItem('lang') || 'en');
   if (localStorage.getItem('theme') === 'dark') toggleTheme();
