@@ -96,8 +96,8 @@
   .review { flex: 0 0 calc(50% - 10px); scroll-snap-align: start; background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 30px; display: flex; flex-direction: column; }
   .stars { color: var(--gold); margin-bottom: 14px; letter-spacing: 2px; }
   .stars b { color: var(--navy); margin-inline-start: 6px; letter-spacing: 0; }
-  .review p { color: var(--navy); flex: 1; }
-  .review .project { margin-top: 16px; font-weight: 600; color: var(--blue); }
+  .review p { color: var(--navy); }
+  .review .project { margin: 16px 0 22px; font-weight: 600; color: var(--blue); }
   .slider-nav { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 28px; }
   .slider-nav .arrow { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: var(--card); color: var(--navy); font-size: 1.4rem; cursor: pointer; transition: background .2s, color .2s; }
   .slider-nav .arrow:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
@@ -105,7 +105,7 @@
   .dots { display: flex; gap: 8px; }
   .dots button { width: 9px; height: 9px; border-radius: 50px; border: 0; padding: 0; background: var(--border); cursor: pointer; transition: width .3s, background .3s; }
   .dots button.active { width: 26px; background: var(--blue); }
-  .endorsed { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); }
+  .endorsed { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--border); }
   .endorsed small { display: block; font-size: 1rem; font-weight: 500; color: var(--navy); margin-bottom: 10px; }
   .endorsed span { display: inline-block; background: var(--bg-blue); color: var(--navy); font-size: .82rem; font-weight: 500; padding: 5px 12px; border-radius: 50px; margin: 0 0 6px 0; margin-inline-end: 6px; }
 
@@ -298,7 +298,7 @@
       <div class="review">
         <div class="stars">★★★★★ <b>5.0</b></div>
         <p>"Yassine provided good-quality work for our automation agency. I recommend working with him."</p>
-        <div class="project" data-i18n="p4">— Long-term Automation Partner for an Agency</div>
+        <div class="project">— N8N Automation &amp; AI Expert - Long-term partnership</div>
         <div class="endorsed"><small data-i18n="endorsed">Endorsed by client</small><span>Committed to Quality</span></div>
       </div>
     </div>
@@ -360,7 +360,7 @@
       career_note: "J'ai développé des logiciels chez Orange &amp; Sofrecom",
       h_reviews: "Ce que disent mes clients", endorsed: "Recommandé par le client",
       p1: "— Système de prospection IA pour une agence web", p2: "— Système IA de génération de leads B2B",
-      p3: "— Développement d'agent IA", p4: "— Partenaire automatisation long terme pour une agence",
+      p3: "— Développement d'agent IA",
       tag_certs: "Certifié", h_certs: "Certifications n8n", view_cert: "Voir le certificat →",
       h_contact: "Automatisons votre entreprise",
       contact_p: "Dites-moi ce qui vous prend du temps. Je l'automatise.",
@@ -379,7 +379,7 @@
       career_note: "طوّرت برمجيات في Orange و Sofrecom",
       h_reviews: "ماذا يقول عملائي", endorsed: "موصى به من العميل",
       p1: "— نظام تواصل بالذكاء الاصطناعي لوكالة ويب", p2: "— نظام ذكاء اصطناعي لجلب عملاء B2B",
-      p3: "— تطوير وكيل ذكاء اصطناعي", p4: "— شريك أتمتة طويل الأمد لوكالة",
+      p3: "— تطوير وكيل ذكاء اصطناعي",
       tag_certs: "شهادات", h_certs: "شهادات n8n", view_cert: "عرض الشهادة ←",
       h_contact: "لنؤتمت أعمالك",
       contact_p: "أخبرني بما يستهلك وقتك، وسأقوم بأتمتته.",
