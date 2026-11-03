@@ -69,11 +69,8 @@
   .stats div + div { border-inline-start: 1px solid var(--border); }
   .stats b { display: block; font-size: 1.6rem; font-weight: 600; color: var(--blue); }
   .stats .jss small { display: block; font-size: .8rem; font-weight: 500; color: var(--text); }
-  .langs { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
-  .lang { display: inline-flex; align-items: center; gap: 10px; background: var(--card); border: 1px solid var(--border); border-radius: 50px; padding: 6px 6px 6px 16px; font-size: .9rem; }
-  [dir="rtl"] .lang { padding: 6px 16px 6px 6px; }
-  .lang b { color: var(--navy); font-weight: 600; }
-  .lang em { font-style: normal; font-size: .78rem; font-weight: 600; color: var(--blue); background: var(--bg-blue); padding: 3px 10px; border-radius: 50px; }
+  .hero .langs { max-width: none; margin: 34px auto 0; text-align: center; font-size: 1.7rem; font-weight: 800; letter-spacing: -0.02em; color: var(--navy); }
+  .hero .langs u { text-decoration-color: var(--blue-light); text-decoration-thickness: 4px; text-underline-offset: 7px; }
   .stats .black { color: var(--navy); }
   .stats .jss {display: flex; align-items: center; justify-content: center; gap: 14px; text-align: start; }
   .stats .jss span { font-size: 1.15rem; font-weight: 600; color: var(--navy); white-space: nowrap; }
@@ -226,11 +223,7 @@
         <span data-i18n="top_rated">Top Rated<small>Top 10% on Upwork</small></span>
       </div>
     </div>
-    <div class="langs">
-      <span class="lang"><b data-i18n="l_en">English</b><em data-i18n="l_en_lv">Fluent</em></span>
-      <span class="lang"><b data-i18n="l_ar">Arabic</b><em data-i18n="l_ar_lv">Native</em></span>
-      <span class="lang"><b data-i18n="l_fr">French</b><em data-i18n="l_fr_lv">Professional</em></span>
-    </div>
+    <p class="langs" data-i18n="langs">I speak <u>English</u>, <u>French</u> &amp; <u>Arabic</u></p>
   </div>
 </header>
 
@@ -365,7 +358,7 @@
       h1: "J'<span>automatise votre entreprise</span> pour que vous puissiez vous concentrer sur <u>l'essentiel</u>",
       hero_p: "J'ai livré des solutions d'automatisation IA à des entreprises B2B et B2C dans la santé, le transport et l'immobilier.",
       rating: "Note client", jss: "100 % de réussite", top_rated: "Top Rated<small>Top 10 % sur Upwork</small>",
-      l_en: "Anglais", l_en_lv: "Courant", l_ar: "Arabe", l_ar_lv: "Natif", l_fr: "Français", l_fr_lv: "Professionnel",
+      langs: "Je parle <u>anglais</u>, <u>français</u> et <u>arabe</u>",
       tools_tag: "Solutions livrées à des équipes utilisant",
       trusted_tag: "Approuvé par les équipes d'ingénierie de",
       career_note: "J'ai développé des logiciels chez Orange &amp; Sofrecom",
@@ -385,7 +378,7 @@
       h1: "<span>أؤتمت أعمالك</span> لتتفرغ <u>لما يهمّك حقاً</u>",
       hero_p: "قدّمت حلول أتمتة بالذكاء الاصطناعي لشركات B2B و B2C في مجالات الرعاية الصحية والنقل والعقارات.",
       rating: "تقييم العملاء", jss: "نسبة نجاح 100%", top_rated: "Top Rated<small>ضمن أفضل 10% على Upwork</small>",
-      l_en: "الإنجليزية", l_en_lv: "بطلاقة", l_ar: "العربية", l_ar_lv: "اللغة الأم", l_fr: "الفرنسية", l_fr_lv: "مستوى مهني",
+      langs: "أتحدث <u>الإنجليزية</u> و<u>الفرنسية</u> و<u>العربية</u>",
       tools_tag: "قدّمت حلولاً لفرق تستخدم",
       trusted_tag: "موثوق من فرق الهندسة في",
       career_note: "طوّرت برمجيات في Orange و Sofrecom",
